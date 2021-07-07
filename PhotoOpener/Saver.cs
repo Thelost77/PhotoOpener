@@ -22,9 +22,15 @@ namespace PhotoOpener
             }
             else
                 return;
-
         }
-
+        public void DeleteImage()
+        {
+            using (var streamWriter = new StreamWriter(_filePath))
+            {
+                streamWriter.WriteLine(string.Empty);
+                streamWriter.Close();
+            }
+        }
         public string ReadImagePath()
         {
             if (!File.Exists(_filePath))

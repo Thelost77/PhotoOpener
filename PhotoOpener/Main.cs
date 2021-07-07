@@ -67,6 +67,7 @@ namespace PhotoOpener
             _filePath = String.Empty;
             pbMain.Image = null;
             SetDeleteBtnInvisible();
+            saver.DeleteImage();
         }
 
         private void SetDeleteBtnInvisible()
