@@ -44,6 +44,8 @@ namespace PhotoOpener
                 return;
             pbMain.Image = Image.FromFile(_filePath);
             SetDeleteBtnVisible();
+            
+            
         }
 
         private void btnAddPhoto_Click(object sender, EventArgs e)

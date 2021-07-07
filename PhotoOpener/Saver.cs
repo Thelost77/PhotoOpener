@@ -32,8 +32,10 @@ namespace PhotoOpener
 
         public string ReadImagePath()
         {
+            if (!File.Exists(_filePath))
+                return string.Empty;
             using (var streamReader = new StreamReader(_filePath))
-            {
+            {                
                 return streamReader.ReadLine();
             }
         }
