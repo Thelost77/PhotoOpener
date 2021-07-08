@@ -38,9 +38,25 @@ namespace PhotoOpener
             if (_filePath == string.Empty || _filePath == null)
                 return;
             pbMain.Image = Image.FromFile(_filePath);
-            SetDeleteBtnVisible();
-            
-            
+            SetDeleteBtnVisible();         
+           
+        }
+        private void SetDeleteBtnInvisible()
+        {
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.FlatAppearance.BorderColor = BackColor;
+            btnDelete.FlatAppearance.MouseOverBackColor = BackColor;
+            btnDelete.FlatAppearance.MouseDownBackColor = BackColor;
+            btnDelete.BackColor = BackColor;
+            btnDelete.Text = null;
+        }
+
+        private void SetDeleteBtnVisible()
+        {
+            btnDelete.BackColor = Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            btnDelete.Text = "Usuń zdjęcie";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.FlatStyle = FlatStyle.Popup;
         }
 
         private void btnAddPhoto_Click(object sender, EventArgs e)
@@ -68,25 +84,7 @@ namespace PhotoOpener
             pbMain.Image = null;
             SetDeleteBtnInvisible();
             saver.DeleteImage();
-        }
-
-        private void SetDeleteBtnInvisible()
-        {
-            btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.FlatAppearance.BorderColor = BackColor;
-            btnDelete.FlatAppearance.MouseOverBackColor = BackColor;
-            btnDelete.FlatAppearance.MouseDownBackColor = BackColor;
-            btnDelete.BackColor = BackColor;
-            btnDelete.Text = null;
-        }
-
-        private void SetDeleteBtnVisible()
-        {
-            btnDelete.BackColor = Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            btnDelete.Text = "Usuń zdjęcie";
-            btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.FlatStyle = FlatStyle.Popup;
-        }
+        }       
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
                 saver.SaveImage();
