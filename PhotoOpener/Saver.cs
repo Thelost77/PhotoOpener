@@ -6,13 +6,13 @@ namespace PhotoOpener
     {
         private string _filePath;
 
-        public Saver()
+        public Saver(string filePath)
         {
-            _filePath = Program.FilePath;
+            _filePath = filePath;
         }
-        public void SaveImage()
+        public void SaveImage(string photoPath)
         {
-            if (Program.PhotoPath != null)
+            if (photoPath != null)
             {
                 using (var streamWriter = new StreamWriter(_filePath))
                 {
@@ -20,8 +20,6 @@ namespace PhotoOpener
                     streamWriter.Close();
                 }
             }
-            else
-                return;
         }
         public void DeleteImage()
         {

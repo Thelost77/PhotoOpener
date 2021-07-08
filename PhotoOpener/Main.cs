@@ -9,7 +9,7 @@ namespace PhotoOpener
 {
     public partial class Main : Form
     {
-        private Saver saver = new Saver();
+        private Saver saver = new Saver(Program.FilePath);
         public bool IsMaximize
         {
             get
@@ -35,7 +35,7 @@ namespace PhotoOpener
         private void LoadPhoto()
         {
             _filePath = saver.ReadImagePath();
-            if (_filePath == string.Empty || _filePath == null)
+            if (string.IsNullOrWhiteSpace(_filePath))
                 return;
             pbMain.Image = Image.FromFile(_filePath);
             SetDeleteBtnVisible();         
@@ -53,7 +53,7 @@ namespace PhotoOpener
 
         private void SetDeleteBtnVisible()
         {
-            btnDelete.BackColor = Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            btnDelete.BackColor = Color.FromArgb(255,192,255);
             btnDelete.Text = "Usuń zdjęcie";
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.FlatStyle = FlatStyle.Popup;
@@ -87,7 +87,7 @@ namespace PhotoOpener
         }       
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
-                saver.SaveImage();
+                saver.SaveImage(Program.PhotoPath);
 
             if (WindowState == FormWindowState.Maximized)
                 IsMaximize = true;
